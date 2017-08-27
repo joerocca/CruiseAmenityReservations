@@ -1,67 +1,46 @@
 defmodule HospitalityHackathonBackend.Auth do
   import Plug.Conn
-  import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
-  import Phoenix.Controller
+  alias HospitalityHackathonBackend.{Repo, User, Session}
+  import Ecto.Query, only: [from: 2]
 
-  alias HospitalityHackathonBackend.Router.Helpers
+  def init(options), do: options
 
-  def init(opts) do
-    Keyword.fetch!(opts, :repo)
-  end
-
-  def call(conn, repo) do
-    user_id = get_session(conn, :user_id)
-
-    cond do
-      user = conn.assigns[:current_user] ->
-        put_current_user(conn, user)
-      user = user_id && repo.get(HospitalityHackathonBackend.User, user_id) ->
-        put_current_user(conn, user)
-      true ->
-        assign(conn, :current_user, nil)
+  def call(conn, _opts) do
+    case find_user(conn) do
+      {:ok, user} -> assign(conn, :current_user, user)
+      _otherwise  -> auth_error!(conn)
     end
   end
 
-  def login_by_email_and_pass(conn, email, given_pass, opts) do
-    repo = Keyword.fetch!(opts, :repo)
-    user = repo.get_by(HospitalityHackathonBackend.User, email: email)
+  defp find_user(conn) do
+    with auth_header = get_req_header(conn, "authorization"),
+         {:ok, token}   <- parse_token(auth_header),
+         {:ok, session} <- find_session_by_token(token),
+    do:  find_user_by_session(session)
+  end
 
-    cond do
-      user && checkpw(given_pass, user.password_hash) ->
-        {:ok, login(conn, user)}
-      user ->
-        {:error, :unauthorized, conn}
-      true ->
-        dummy_checkpw()
-        {:error, :not_found, conn}
+  defp parse_token(["Token token=" <> token]) do
+    {:ok, String.replace(token, "\"", "")}
+  end
+  defp parse_token(_non_token_header), do: :error
+
+  defp find_session_by_token(token) do
+    case Repo.one(from s in Session, where: s.token == ^token) do
+      nil     -> :error
+      session -> {:ok, session}
     end
   end
 
-  def authenticate_user(conn, _opts) do
-     if conn.assigns.current_user do
-       conn
-     else
-       conn
-       |> put_flash(:error, "You must be logged in to access that page")
-       |> redirect(to: Helpers.session_path(conn, :new))
-       |> halt()
-     end
+  defp find_user_by_session(session) do
+    case Repo.get(User, session.user_id) do
+      nil  -> :error
+      user -> {:ok, user}
+    end
   end
 
-  def login(conn, user) do
+  defp auth_error!(conn) do
     conn
-    |> put_current_user(user)
-    |> put_session(:user_id, user.id)
-    |> configure_session(renew: true)
+    |> send_resp(:unauthorized, "")
+    |> halt()
   end
-
-  def logout(conn) do
-    configure_session(conn, drop: true)
-  end
-
-  defp put_current_user(conn, user) do
-    conn
-    |> assign(:current_user, user)
-  end
-
 end

@@ -56,7 +56,7 @@ defmodule HospitalityHackathonBackend.Web do
     quote do
       use Phoenix.Router
 
-      import HospitalityHackathonBackend.Auth, only: [authenticate_user: 2]
+      import HospitalityHackathonBackend.Auth, only: [call: 2]
     end
   end
 

@@ -5,13 +5,16 @@ defmodule HospitalityHackathonBackend.ReservationController do
   alias HospitalityHackathonBackend.Amenity
 
   def index(conn, %{"amenity_id" => amenity_id}) do
-    # query = from(r in Reservation, where: r.amenity_id == ^amenity_id)
-    amenity = Repo.get!(Amenity, amenity_id)
-    reservations = Repo.all(amenity_reservations(amenity))
+    # query = from(r in Reservation, where: r.amenity_id == ^amenity_id, where: r.user_id == ^user_id)
+    user = conn.assigns[:current_user]
+    query = from(r in Reservation, where: r.amenity_id == ^amenity_id, where: r.user_id == ^user.id)
+    # amenity = Repo.get!(Amenity, amenity_id)
+    reservations = Repo.all(query)
     render(conn, "index.json", reservations: reservations)
   end
 
   def create(conn, %{"reservation" => reservation_params, "amenity_id" => amenity_id}) do
+    # user = conn.assigns[:current_user]
     reservation_params = reservation_params |> Map.put_new("amenity_id", amenity_id)
     changeset = Reservation.changeset(%Reservation{}, reservation_params)
 

@@ -8,8 +8,15 @@ defmodule HospitalityHackathonBackend.Router do
   scope "/api", HospitalityHackathonBackend do
     pipe_through :api
 
+    resources "/sessions", SessionController, only: [:create]
+  end
+
+  scope "/api", HospitalityHackathonBackend do
+    pipe_through [:api, HospitalityHackathonBackend.Auth]
+
     resources "/amenities", AmenityController, except: [:new, :edit] do
       resources "/reservations", ReservationController, except: [:new, :edit]
     end
   end
+
 end
