@@ -17,7 +17,7 @@ defmodule HospitalityHackathonBackend.User do
     struct
     |> cast(params, @required_fields)
     |> validate_required([:name, :ticket_id])
-    |> validate_length(:ticket_id, min: 1, max: 255)
+    |> validate_length(:ticket_id, min: 1, max: 25)
     |> unique_constraint(:ticket_id)
   end
 end

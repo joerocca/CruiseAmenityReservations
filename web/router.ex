@@ -14,7 +14,7 @@ defmodule HospitalityHackathonBackend.Router do
   scope "/api", HospitalityHackathonBackend do
     pipe_through [:api, HospitalityHackathonBackend.Auth]
 
-    resources "/users", UserController, only: [:show]
+    resources "/user", UserController, only: [:show, :update], singleton: true
 
     resources "/amenities", AmenityController, except: [:new, :edit] do
       resources "/reservations", ReservationController, except: [:new, :edit]
