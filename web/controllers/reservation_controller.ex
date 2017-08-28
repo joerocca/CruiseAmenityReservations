@@ -6,7 +6,7 @@ defmodule HospitalityHackathonBackend.ReservationController do
 
   def index(conn, %{"amenity_id" => amenity_id}) do
     # query = from(r in Reservation, where: r.amenity_id == ^amenity_id, where: r.user_id == ^user_id)
-    user = conn.assigns[:current_user]
+    user = conn.assigns.current_user
     query = from(r in Reservation, where: r.amenity_id == ^amenity_id, where: r.user_id == ^user.id)
     # amenity = Repo.get!(Amenity, amenity_id)
     reservations = Repo.all(query)
@@ -14,8 +14,8 @@ defmodule HospitalityHackathonBackend.ReservationController do
   end
 
   def create(conn, %{"reservation" => reservation_params, "amenity_id" => amenity_id}) do
-    # user = conn.assigns[:current_user]
-    reservation_params = reservation_params |> Map.put_new("amenity_id", amenity_id)
+    user = conn.assigns.current_user
+    reservation_params = reservation_params |> Map.put_new("amenity_id", amenity_id) |> Map.put_new("user_id", user.id)
     changeset = Reservation.changeset(%Reservation{}, reservation_params)
 
     case Repo.insert(changeset) do
