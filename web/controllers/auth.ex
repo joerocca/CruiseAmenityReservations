@@ -1,7 +1,7 @@
 defmodule HospitalityHackathonBackend.Auth do
   import Plug.Conn
-  alias HospitalityHackathonBackend.{Repo, User, Session}
   import Ecto.Query, only: [from: 2]
+  alias HospitalityHackathonBackend.{Repo, User, Session}
 
   def init(options), do: options
 
