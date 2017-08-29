@@ -7,14 +7,14 @@ use Mix.Config
 
 # General application configuration
 config :hospitality_hackathon_backend,
-  ecto_repos: [HospitalityHackathonBackend.Repo]
+  ecto_repos: [CruiseAmenityReservations.Repo]
 
 # Configures the endpoint
-config :hospitality_hackathon_backend, HospitalityHackathonBackend.Endpoint,
+config :hospitality_hackathon_backend, CruiseAmenityReservations.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "zG7y7flZiXJs0O1uL0A8s+O7mylYvCWWG7mK7B/kv5WdaKMIsiNSeMFBplP8XUAo",
-  render_errors: [view: HospitalityHackathonBackend.ErrorView, accepts: ~w(json)],
-  pubsub: [name: HospitalityHackathonBackend.PubSub,
+  render_errors: [view: CruiseAmenityReservations.ErrorView, accepts: ~w(json)],
+  pubsub: [name: CruiseAmenityReservations.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

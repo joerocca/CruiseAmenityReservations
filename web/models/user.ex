@@ -1,11 +1,11 @@
-defmodule HospitalityHackathonBackend.User do
-  use HospitalityHackathonBackend.Web, :model
+defmodule CruiseAmenityReservations.User do
+  use CruiseAmenityReservations.Web, :model
 
   schema "users" do
     field :name, :string
     field :ticket_id, :string
 
-    has_many :reservations, HospitalityHackathonBackend.Reservation, on_delete: :delete_all
+    has_many :reservations, CruiseAmenityReservations.Reservation, on_delete: :delete_all
 
     timestamps()
   end

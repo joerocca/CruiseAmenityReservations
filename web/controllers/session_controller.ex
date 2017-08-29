@@ -1,8 +1,8 @@
-defmodule HospitalityHackathonBackend.SessionController do
-  use HospitalityHackathonBackend.Web, :controller
+defmodule CruiseAmenityReservations.SessionController do
+  use CruiseAmenityReservations.Web, :controller
 
-  alias HospitalityHackathonBackend.User
-  alias HospitalityHackathonBackend.Session
+  alias CruiseAmenityReservations.User
+  alias CruiseAmenityReservations.Session
 
   def create(conn, %{"user" => user_params}) do
     user = Repo.get_by(User, ticket_id: user_params["ticket_id"])
@@ -25,7 +25,7 @@ defmodule HospitalityHackathonBackend.SessionController do
           {:error, changeset} ->
             conn
             |> put_status(:unprocessable_entity)
-            |> render(HospitalityHackathonBackend.ChangesetView, "error.json", changeset: changeset)
+            |> render(CruiseAmenityReservations.ChangesetView, "error.json", changeset: changeset)
         end
     end
   end

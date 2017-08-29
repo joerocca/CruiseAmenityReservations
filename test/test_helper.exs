@@ -1,4 +1,4 @@
 ExUnit.start
 
-Ecto.Adapters.SQL.Sandbox.mode(HospitalityHackathonBackend.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(CruiseAmenityReservations.Repo, :manual)
 

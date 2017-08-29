@@ -1,7 +1,7 @@
-defmodule HospitalityHackathonBackend.ReservationTest do
-  use HospitalityHackathonBackend.ModelCase
+defmodule CruiseAmenityReservations.ReservationTest do
+  use CruiseAmenityReservations.ModelCase
 
-  alias HospitalityHackathonBackend.Reservation
+  alias CruiseAmenityReservations.Reservation
 
   @valid_attrs %{}
   @invalid_attrs %{}

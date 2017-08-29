@@ -1,4 +1,4 @@
-defmodule HospitalityHackathonBackend.Mixfile do
+defmodule CruiseAmenityReservations.Mixfile do
   use Mix.Project
 
   def project do
@@ -17,7 +17,7 @@ defmodule HospitalityHackathonBackend.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {HospitalityHackathonBackend, []},
+    [mod: {CruiseAmenityReservations, []},
      applications: [:phoenix, :phoenix_pubsub, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex]]
   end

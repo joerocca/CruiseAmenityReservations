@@ -1,11 +1,11 @@
-defmodule HospitalityHackathonBackend.ChangesetView do
-  use HospitalityHackathonBackend.Web, :view
+defmodule CruiseAmenityReservations.ChangesetView do
+  use CruiseAmenityReservations.Web, :view
 
   @doc """
   Traverses and translates changeset errors.
 
   See `Ecto.Changeset.traverse_errors/2` and
-  `HospitalityHackathonBackend.ErrorHelpers.translate_error/1` for more details.
+  `CruiseAmenityReservations.ErrorHelpers.translate_error/1` for more details.
   """
   def translate_errors(changeset) do
     Ecto.Changeset.traverse_errors(changeset, &translate_error/1)

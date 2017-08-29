@@ -1,18 +1,18 @@
-defmodule HospitalityHackathonBackend.Router do
-  use HospitalityHackathonBackend.Web, :router
+defmodule CruiseAmenityReservations.Router do
+  use CruiseAmenityReservations.Web, :router
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/api", HospitalityHackathonBackend do
+  scope "/api", CruiseAmenityReservations do
     pipe_through :api
 
     resources "/sessions", SessionController, only: [:create]
   end
 
-  scope "/api", HospitalityHackathonBackend do
-    pipe_through [:api, HospitalityHackathonBackend.Auth]
+  scope "/api", CruiseAmenityReservations do
+    pipe_through [:api, CruiseAmenityReservations.Auth]
 
     resources "/user", UserController, only: [:show, :update], singleton: true
 

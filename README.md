@@ -1,4 +1,4 @@
-# HospitalityHackathonBackend
+# CruiseAmenityReservations
 
 To start your Phoenix app:
 

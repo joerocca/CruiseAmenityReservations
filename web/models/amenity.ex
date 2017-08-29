@@ -1,5 +1,5 @@
-defmodule HospitalityHackathonBackend.Amenity do
-  use HospitalityHackathonBackend.Web, :model
+defmodule CruiseAmenityReservations.Amenity do
+  use CruiseAmenityReservations.Web, :model
 
   schema "amenities" do
     field :name, :string
@@ -7,7 +7,7 @@ defmodule HospitalityHackathonBackend.Amenity do
     field :amenity_image, :string
     field :ship_location_image, :string
 
-    has_many :reservations, HospitalityHackathonBackend.Reservation, on_delete: :delete_all, on_replace: :delete
+    has_many :reservations, CruiseAmenityReservations.Reservation, on_delete: :delete_all, on_replace: :delete
 
     timestamps()
   end

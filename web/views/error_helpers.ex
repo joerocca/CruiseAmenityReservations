@@ -1,4 +1,4 @@
-defmodule HospitalityHackathonBackend.ErrorHelpers do
+defmodule CruiseAmenityReservations.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -21,9 +21,9 @@ defmodule HospitalityHackathonBackend.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(HospitalityHackathonBackend.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(CruiseAmenityReservations.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(HospitalityHackathonBackend.Gettext, "errors", msg, opts)
+      Gettext.dgettext(CruiseAmenityReservations.Gettext, "errors", msg, opts)
     end
   end
 end

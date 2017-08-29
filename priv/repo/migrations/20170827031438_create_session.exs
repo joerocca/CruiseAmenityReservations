@@ -1,4 +1,4 @@
-defmodule HospitalityHackathonBackend.Repo.Migrations.CreateSession do
+defmodule CruiseAmenityReservations.Repo.Migrations.CreateSession do
   use Ecto.Migration
 
   def change do

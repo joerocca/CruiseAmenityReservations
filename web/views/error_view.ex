@@ -1,5 +1,5 @@
-defmodule HospitalityHackathonBackend.ErrorView do
-  use HospitalityHackathonBackend.Web, :view
+defmodule CruiseAmenityReservations.ErrorView do
+  use CruiseAmenityReservations.Web, :view
 
   def render("404.json", _assigns) do
     %{errors: %{detail: "Page not found"}}

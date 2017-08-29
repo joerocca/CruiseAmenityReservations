@@ -1,13 +1,13 @@
-defmodule HospitalityHackathonBackend.Reservation do
-  use HospitalityHackathonBackend.Web, :model
+defmodule CruiseAmenityReservations.Reservation do
+  use CruiseAmenityReservations.Web, :model
 
-  alias HospitalityHackathonBackend.Reservation
+  alias CruiseAmenityReservations.Reservation
 
   schema "reservations" do
     field :reserved_datetime, :naive_datetime
 
-    belongs_to :user, HospitalityHackathonBackend.User
-    belongs_to :amenity, HospitalityHackathonBackend.Amenity
+    belongs_to :user, CruiseAmenityReservations.User
+    belongs_to :amenity, CruiseAmenityReservations.Amenity
 
     timestamps()
   end

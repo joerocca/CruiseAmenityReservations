@@ -1,7 +1,7 @@
-defmodule HospitalityHackathonBackend.UserControllerTest do
-  use HospitalityHackathonBackend.ConnCase
+defmodule CruiseAmenityReservations.UserControllerTest do
+  use CruiseAmenityReservations.ConnCase
 
-  alias HospitalityHackathonBackend.User
+  alias CruiseAmenityReservations.User
   @valid_attrs %{name: "some content", token: "some content"}
   @invalid_attrs %{}
 

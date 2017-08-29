@@ -1,7 +1,7 @@
-defmodule HospitalityHackathonBackend.AmenityTest do
-  use HospitalityHackathonBackend.ModelCase
+defmodule CruiseAmenityReservations.AmenityTest do
+  use CruiseAmenityReservations.ModelCase
 
-  alias HospitalityHackathonBackend.Amenity
+  alias CruiseAmenityReservations.Amenity
 
   @valid_attrs %{amenity_image: "some content", description: "some content", name: "some content", ship_location_image: "some content"}
   @invalid_attrs %{}

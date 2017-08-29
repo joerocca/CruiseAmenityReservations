@@ -1,8 +1,8 @@
-defmodule HospitalityHackathonBackend.ReservationController do
-  use HospitalityHackathonBackend.Web, :controller
+defmodule CruiseAmenityReservations.ReservationController do
+  use CruiseAmenityReservations.Web, :controller
 
-  alias HospitalityHackathonBackend.Reservation
-  alias HospitalityHackathonBackend.Amenity
+  alias CruiseAmenityReservations.Reservation
+  alias CruiseAmenityReservations.Amenity
 
   def index(conn, params, user) do
     query = case params do
@@ -30,7 +30,7 @@ defmodule HospitalityHackathonBackend.ReservationController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(HospitalityHackathonBackend.ChangesetView, "error.json", changeset: changeset)
+        |> render(CruiseAmenityReservations.ChangesetView, "error.json", changeset: changeset)
     end
   end
 
@@ -49,7 +49,7 @@ defmodule HospitalityHackathonBackend.ReservationController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(HospitalityHackathonBackend.ChangesetView, "error.json", changeset: changeset)
+        |> render(CruiseAmenityReservations.ChangesetView, "error.json", changeset: changeset)
     end
   end
 

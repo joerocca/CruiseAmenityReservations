@@ -1,7 +1,7 @@
-defmodule HospitalityHackathonBackend.Endpoint do
+defmodule CruiseAmenityReservations.Endpoint do
   use Phoenix.Endpoint, otp_app: :hospitality_hackathon_backend
 
-  socket "/socket", HospitalityHackathonBackend.UserSocket
+  socket "/socket", CruiseAmenityReservations.UserSocket
 
   plug CORSPlug, origin: ["*"]
 
@@ -38,5 +38,5 @@ defmodule HospitalityHackathonBackend.Endpoint do
     key: "_hospitality_hackathon_backend_key",
     signing_salt: "TSgfnGJz"
 
-  plug HospitalityHackathonBackend.Router
+  plug CruiseAmenityReservations.Router
 end

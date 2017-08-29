@@ -1,7 +1,7 @@
-defmodule HospitalityHackathonBackend.AmenityController do
-  use HospitalityHackathonBackend.Web, :controller
+defmodule CruiseAmenityReservations.AmenityController do
+  use CruiseAmenityReservations.Web, :controller
 
-  alias HospitalityHackathonBackend.Amenity
+  alias CruiseAmenityReservations.Amenity
 
   def index(conn, _params) do
     amenities = Repo.all(Amenity)
@@ -20,7 +20,7 @@ defmodule HospitalityHackathonBackend.AmenityController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(HospitalityHackathonBackend.ChangesetView, "error.json", changeset: changeset)
+        |> render(CruiseAmenityReservations.ChangesetView, "error.json", changeset: changeset)
     end
   end
 
@@ -39,7 +39,7 @@ defmodule HospitalityHackathonBackend.AmenityController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(HospitalityHackathonBackend.ChangesetView, "error.json", changeset: changeset)
+        |> render(CruiseAmenityReservations.ChangesetView, "error.json", changeset: changeset)
     end
   end
 

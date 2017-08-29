@@ -1,9 +1,9 @@
-defmodule HospitalityHackathonBackend.Session do
-  use HospitalityHackathonBackend.Web, :model
+defmodule CruiseAmenityReservations.Session do
+  use CruiseAmenityReservations.Web, :model
 
   schema "sessions" do
     field :token, :string
-    belongs_to :user, HospitalityHackathonBackend.User
+    belongs_to :user, CruiseAmenityReservations.User
 
     timestamps()
   end

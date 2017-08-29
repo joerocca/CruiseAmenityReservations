@@ -1,7 +1,7 @@
-defmodule HospitalityHackathonBackend.UserTest do
-  use HospitalityHackathonBackend.ModelCase
+defmodule CruiseAmenityReservations.UserTest do
+  use CruiseAmenityReservations.ModelCase
 
-  alias HospitalityHackathonBackend.User
+  alias CruiseAmenityReservations.User
 
   @valid_attrs %{name: "some content", ticket_id: "some content"}
   @invalid_attrs %{}

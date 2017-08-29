@@ -2,7 +2,7 @@
 #
 #     mix run priv/repo/seeds.exs
 
-alias HospitalityHackathonBackend.Amenity
+alias CruiseAmenityReservations.Amenity
 
 amenities = [
   %{name: "Rock Climbing",
@@ -34,5 +34,5 @@ amenities = [
 
 Enum.each amenities, fn amenity_params ->
   changeset = Amenity.changeset(%Amenity{}, amenity_params)
-  HospitalityHackathonBackend.Repo.insert!(changeset)
+  CruiseAmenityReservations.Repo.insert!(changeset)
 end

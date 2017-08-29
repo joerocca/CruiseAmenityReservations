@@ -1,4 +1,4 @@
-defmodule HospitalityHackathonBackend.ConnCase do
+defmodule CruiseAmenityReservations.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -20,23 +20,23 @@ defmodule HospitalityHackathonBackend.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      alias HospitalityHackathonBackend.Repo
+      alias CruiseAmenityReservations.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
 
-      import HospitalityHackathonBackend.Router.Helpers
+      import CruiseAmenityReservations.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint HospitalityHackathonBackend.Endpoint
+      @endpoint CruiseAmenityReservations.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(HospitalityHackathonBackend.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(CruiseAmenityReservations.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(HospitalityHackathonBackend.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(CruiseAmenityReservations.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

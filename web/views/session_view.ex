@@ -1,12 +1,12 @@
-defmodule HospitalityHackathonBackend.SessionView do
-  use HospitalityHackathonBackend.Web, :view
+defmodule CruiseAmenityReservations.SessionView do
+  use CruiseAmenityReservations.Web, :view
 
   def render("index.json", %{sessions: sessions}) do
-    %{data: render_many(sessions, HospitalityHackathonBackend.SessionView, "session.json")}
+    %{data: render_many(sessions, CruiseAmenityReservations.SessionView, "session.json")}
   end
 
   def render("show.json", %{session: session}) do
-    %{data: render_one(session, HospitalityHackathonBackend.SessionView, "session.json")}
+    %{data: render_one(session, CruiseAmenityReservations.SessionView, "session.json")}
   end
 
   def render("session.json", %{session: session}) do

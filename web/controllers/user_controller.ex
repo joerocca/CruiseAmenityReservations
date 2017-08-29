@@ -1,7 +1,7 @@
-defmodule HospitalityHackathonBackend.UserController do
-  use HospitalityHackathonBackend.Web, :controller
+defmodule CruiseAmenityReservations.UserController do
+  use CruiseAmenityReservations.Web, :controller
 
-  alias HospitalityHackathonBackend.User
+  alias CruiseAmenityReservations.User
 
   def show(conn, _params) do
     user = conn.assigns.current_user
@@ -17,7 +17,7 @@ defmodule HospitalityHackathonBackend.UserController do
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render(HospitalityHackathonBackend.ChangesetView, "error.json", changeset: changeset)
+        |> render(CruiseAmenityReservations.ChangesetView, "error.json", changeset: changeset)
     end
   end
 end

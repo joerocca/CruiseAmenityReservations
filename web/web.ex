@@ -1,12 +1,12 @@
-defmodule HospitalityHackathonBackend.Web do
+defmodule CruiseAmenityReservations.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use HospitalityHackathonBackend.Web, :controller
-      use HospitalityHackathonBackend.Web, :view
+      use CruiseAmenityReservations.Web, :controller
+      use CruiseAmenityReservations.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -30,12 +30,12 @@ defmodule HospitalityHackathonBackend.Web do
     quote do
       use Phoenix.Controller
 
-      alias HospitalityHackathonBackend.Repo
+      alias CruiseAmenityReservations.Repo
       import Ecto
       import Ecto.Query
 
-      import HospitalityHackathonBackend.Router.Helpers
-      import HospitalityHackathonBackend.Gettext
+      import CruiseAmenityReservations.Router.Helpers
+      import CruiseAmenityReservations.Gettext
     end
   end
 
@@ -46,9 +46,9 @@ defmodule HospitalityHackathonBackend.Web do
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
 
-      import HospitalityHackathonBackend.Router.Helpers
-      import HospitalityHackathonBackend.ErrorHelpers
-      import HospitalityHackathonBackend.Gettext
+      import CruiseAmenityReservations.Router.Helpers
+      import CruiseAmenityReservations.ErrorHelpers
+      import CruiseAmenityReservations.Gettext
     end
   end
 
@@ -56,7 +56,7 @@ defmodule HospitalityHackathonBackend.Web do
     quote do
       use Phoenix.Router
 
-      import HospitalityHackathonBackend.Auth, only: [call: 2]
+      import CruiseAmenityReservations.Auth, only: [call: 2]
     end
   end
 
@@ -64,10 +64,10 @@ defmodule HospitalityHackathonBackend.Web do
     quote do
       use Phoenix.Channel
 
-      alias HospitalityHackathonBackend.Repo
+      alias CruiseAmenityReservations.Repo
       import Ecto
       import Ecto.Query
-      import HospitalityHackathonBackend.Gettext
+      import CruiseAmenityReservations.Gettext
     end
   end
 
