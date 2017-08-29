@@ -1,6 +1,8 @@
 defmodule HospitalityHackathonBackend.Reservation do
   use HospitalityHackathonBackend.Web, :model
 
+  alias HospitalityHackathonBackend.Reservation
+
   schema "reservations" do
     field :reserved_datetime, :naive_datetime
 
@@ -21,5 +23,16 @@ defmodule HospitalityHackathonBackend.Reservation do
     |> validate_required([:reserved_datetime, :user_id, :amenity_id])
     |> foreign_key_constraint(:user_id)
     |> foreign_key_constraint(:amenity_id)
+  end
+
+  #Queries
+  def get_by_amenity(query \\ Reservation, amenity_id) do
+    from r in query,
+      where: r.amenity_id == ^amenity_id
+  end
+
+  def get_by_user_and_amenity(query \\ Reservation, user_id, amenity_id) do
+    from r in query,
+      where: r.user_id == ^user_id and r.amenity_id == ^amenity_id
   end
 end

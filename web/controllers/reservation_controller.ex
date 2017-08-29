@@ -2,20 +2,24 @@ defmodule HospitalityHackathonBackend.ReservationController do
   use HospitalityHackathonBackend.Web, :controller
 
   alias HospitalityHackathonBackend.Reservation
+  alias HospitalityHackathonBackend.Amenity
 
-  def index(conn, %{"amenity_id" => amenity_id}) do
-    user = conn.assigns.current_user
-    query = from(r in Reservation, where: r.amenity_id == ^amenity_id, where: r.user_id == ^user.id)
+  def index(conn, params, user) do
+    query = case params do
+      %{"amenity_id" => amenity_id, "all" => all} ->
+        Reservation.get_by_amenity(amenity_id)
+      %{"amenity_id" => amenity_id} ->
+        Reservation.get_by_user_and_amenity(user.id, amenity_id)
+    end
     reservations = Repo.all(query)
     render(conn, "index.json", reservations: reservations)
   end
 
-  def create(conn, %{"reservation" => reservation_params, "amenity_id" => amenity_id}) do
-    user = conn.assigns.current_user
-    reservation_params = reservation_params
-    |> Map.put_new("amenity_id", amenity_id)
-    |> Map.put_new("user_id", user.id)
-    changeset = Reservation.changeset(%Reservation{}, reservation_params)
+  def create(conn, %{"reservation" => reservation_params, "amenity_id" => amenity_id}, user) do
+    amenity = Repo.get!(Amenity, amenity_id)
+    reservation = build_assoc(user, :reservations)
+    reservation = build_assoc(amenity, :reservations, reservation)
+    changeset = Reservation.changeset(reservation, reservation_params)
 
     case Repo.insert(changeset) do
       {:ok, reservation} ->
@@ -30,13 +34,13 @@ defmodule HospitalityHackathonBackend.ReservationController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => id}, _user) do
     reservation = Repo.get!(Reservation, id)
     render(conn, "show.json", reservation: reservation)
   end
 
-  def update(conn, %{"id" => id, "reservation" => reservation_params}) do
-    reservation = Repo.get!(Reservation, id)
+  def update(conn, %{"id" => id, "reservation" => reservation_params}, user) do
+    reservation = Repo.get!(user_reservations(user), id)
     changeset = Reservation.changeset(reservation, reservation_params)
 
     case Repo.update(changeset) do
@@ -49,14 +53,23 @@ defmodule HospitalityHackathonBackend.ReservationController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    reservation = Repo.get!(Reservation, id)
-
+  def delete(conn, %{"id" => id}, user) do
+    reservation = Repo.get!(user_reservations(user), id)
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
     Repo.delete!(reservation)
-
     send_resp(conn, :no_content, "")
+  end
+
+  # HELPERS
+  defp user_reservations(user) do
+    assoc(user, :reservations)
+  end
+
+  # OVERRIDES
+  def action(conn, _) do
+    apply(__MODULE__, action_name(conn),
+          [conn, conn.params, conn.assigns.current_user])
   end
 
 end
