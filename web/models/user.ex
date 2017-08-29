@@ -5,6 +5,8 @@ defmodule HospitalityHackathonBackend.User do
     field :name, :string
     field :ticket_id, :string
 
+    has_many :reservations, HospitalityHackathonBackend.Reservation, on_delete: :delete_all
+
     timestamps()
   end
 
