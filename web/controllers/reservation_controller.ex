@@ -6,10 +6,10 @@ defmodule CruiseAmenityReservations.ReservationController do
 
   def index(conn, params, user) do
     query = case params do
-      %{"amenity_id" => amenity_id, "all" => all} ->
-        Reservation.get_by_amenity(amenity_id)
       %{"amenity_id" => amenity_id} ->
         Reservation.get_by_user_and_amenity(user.id, amenity_id)
+      %{"amenity_id" => amenity_id, "all" => _all} ->
+        Reservation.get_by_amenity(amenity_id)
     end
     reservations = Repo.all(query)
     render(conn, "index.json", reservations: reservations)
